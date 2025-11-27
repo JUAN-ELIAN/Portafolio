@@ -16,12 +16,12 @@ const wrap = (min: number, max: number, v: number) => {
     return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 };
 
-interface ClientTickerProps {
+interface ClientMarqueeProps {
     clients: Client[];
     baseVelocity?: number; // Velocidad base del movimiento
 }
 
-const ClientTicker = ({ clients, baseVelocity = 5 }: ClientTickerProps) => {
+const ClientMarquee = ({ clients, baseVelocity = 5 }: ClientMarqueeProps) => {
     const baseX = useMotionValue(0);
     const { scrollY } = useScroll();
     const scrollVelocity = useVelocity(scrollY);
@@ -79,4 +79,4 @@ const ClientTicker = ({ clients, baseVelocity = 5 }: ClientTickerProps) => {
     );
 };
 
-export default ClientTicker;
+export default ClientMarquee;

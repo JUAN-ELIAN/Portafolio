@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { clients } from '../../data/clients';
-import ClientTicker from '../shared/ClientTicker';
+import ClientMarquee from '../shared/ClientMarquee';
 
 const ClientsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,13 +48,13 @@ const ClientsSection = () => {
         {/* Tickers con direcciones opuestas */}
         <div className="flex flex-col gap-8 md:gap-12 mt-10">
           {/* Fila 1: Mueve a la izquierda */}
-          <ClientTicker clients={clients} baseVelocity={-1} />
+          <ClientMarquee clients={clients} baseVelocity={-1} />
 
           {/* Fila 2: Mueve a la derecha */}
-          <ClientTicker clients={clients} baseVelocity={1} />
+          <ClientMarquee clients={clients} baseVelocity={1} />
 
           {/* Fila 3: Mueve a la izquierda (opcional, más rápido) */}
-          <ClientTicker clients={clients} baseVelocity={-1.5} />
+          <ClientMarquee clients={clients} baseVelocity={-1.5} />
         </div>
 
       </motion.div>

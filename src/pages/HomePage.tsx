@@ -8,7 +8,7 @@ import SoftwareProjectsSection from '../components/home/SoftwareProjectsSection'
 import CivilProjectsSection from '../components/home/CivilProjectsSection';
 import ClientsSection from '../components/home/ClientsSection';
 import SkillsSection from '../components/home/SkillsSection';
-import FloatingContactButton from '../components/shared/FloatingContactButton';
+import ContactFab from '../components/shared/ContactFab';
 import SpiralBackground from '../components/shared/SpiralBackground';
 
 const HomePage = () => {
@@ -27,7 +27,7 @@ const HomePage = () => {
       <CivilProjectsSection />
       <ClientsSection />
       <SkillsSection />
-      <FloatingContactButton />
+      <ContactFab />
     </motion.div>
   );
 };
