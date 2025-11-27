@@ -1,0 +1,80 @@
+# ========================================
+# DEPENDENCIAS
+# ========================================
+node_modules
+.pnp
+.pnp.js
+
+# ========================================
+# ARCHIVOS DE TESTING
+# ========================================
+coverage
+
+# ========================================
+# BUILDS DE PRODUCCIÓN
+# ========================================
+dist
+dist-ssr
+*.local
+
+# ========================================
+# VARIABLES DE ENTORNO - ¡IMPORTANTE!
+# ========================================
+# Estos archivos contienen información sensible
+# NUNCA los subas a GitHub
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ========================================
+# LOGS Y DEBUG
+# ========================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ========================================
+# EDITOR / IDE
+# ========================================
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ========================================
+# VERCEL
+# ========================================
+.vercel
+
+# ========================================
+# SISTEMA OPERATIVO
+# ========================================
+Thumbs.db
+.DS_Store
+
+# ========================================
+# ARCHIVOS TEMPORALES
+# ========================================
+*.tmp
+*.temp
+.cache
+
+# ========================================
+# NOTAS PARA DESARROLLO
+# ========================================
+# Si necesitas añadir archivos personales de notas
+# que NO quieres subir a GitHub, añádelos aquí:
+# 
+# NOTES.md
+# TODO_PERSONAL.md
+# ========================================

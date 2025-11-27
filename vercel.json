@@ -1,0 +1,58 @@
+{
+    "version": 2,
+    "// ========================================": "",
+    "// CONFIGURACIÓN DE VERCEL - PRODUCCIÓN": "",
+    "// ========================================": "",
+    "// Este archivo configura el despliegue en Vercel.": "",
+    "// Para desarrollo local, usa: npm run dev": "",
+    "// Para preview local de producción: npm run build && npm run preview": "",
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist",
+    "devCommand": "npm run dev",
+    "installCommand": "npm install",
+    "framework": "vite",
+    "// ========================================": "",
+    "// REWRITES - IMPORTANTE PARA SPA ROUTING": "",
+    "// ========================================": "",
+    "// Esto asegura que todas las rutas (/, /portfolio, /contact, etc.)": "",
+    "// funcionen correctamente en producción.": "",
+    "// React Router maneja el routing del lado del cliente.": "",
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ],
+    "// ========================================": "",
+    "// HEADERS - OPTIMIZACIÓN Y SEGURIDAD": "",
+    "// ========================================": "",
+    "// Descomentar si necesitas configurar headers personalizados": "",
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "X-Content-Type-Options",
+                    "value": "nosniff"
+                },
+                {
+                    "key": "X-Frame-Options",
+                    "value": "DENY"
+                },
+                {
+                    "key": "X-XSS-Protection",
+                    "value": "1; mode=block"
+                }
+            ]
+        },
+        {
+            "source": "/(.*)\\.(jpg|jpeg|png|gif|ico|svg|webp)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        }
+    ]
+}
