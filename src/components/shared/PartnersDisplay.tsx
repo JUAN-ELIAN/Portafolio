@@ -16,12 +16,12 @@ const wrap = (min: number, max: number, v: number) => {
     return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 };
 
-interface ClientMarqueeProps {
+interface PartnersDisplayProps {
     clients: Client[];
-    baseVelocity?: number; // Velocidad base del movimiento
+    baseVelocity?: number;
 }
 
-const ClientMarquee = ({ clients, baseVelocity = 5 }: ClientMarqueeProps) => {
+const PartnersDisplay = ({ clients, baseVelocity = 5 }: PartnersDisplayProps) => {
     const baseX = useMotionValue(0);
     const { scrollY } = useScroll();
     const scrollVelocity = useVelocity(scrollY);
@@ -30,12 +30,10 @@ const ClientMarquee = ({ clients, baseVelocity = 5 }: ClientMarqueeProps) => {
         stiffness: 400
     });
 
-    // Modulamos la velocidad base con la velocidad del scroll
     const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
         clamp: false
     });
 
-    // Envolvemos el valor de X para que sea cíclico (0% a -50% asumiendo duplicación)
     const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
 
     const directionFactor = useRef<number>(1);
@@ -43,7 +41,6 @@ const ClientMarquee = ({ clients, baseVelocity = 5 }: ClientMarqueeProps) => {
     useAnimationFrame((t, delta) => {
         let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-        // Cambiar dirección según el scroll
         if (velocityFactor.get() < 0) {
             directionFactor.current = -1;
         } else if (velocityFactor.get() > 0) {
@@ -55,28 +52,25 @@ const ClientMarquee = ({ clients, baseVelocity = 5 }: ClientMarqueeProps) => {
         baseX.set(baseX.get() + moveBy);
     });
 
-    // Duplicamos la lista varias veces para asegurar que cubra el ancho y permita el loop
     const displayClients = [...clients, ...clients, ...clients, ...clients];
 
     return (
-        <div className="overflow-hidden flex flex-nowrap whitespace-nowrap py-8 mask-linear-fade">
-            <motion.div className="flex flex-nowrap gap-16 items-center" style={{ x }}>
+        <div className="overflow-hidden flex flex-nowrap whitespace-nowrap py-8 w-full">
+            <motion.ul className="flex flex-nowrap gap-16 items-center list-none m-0 p-0" style={{ x }}>
                 {displayClients.map((client, idx) => (
-                    <div
+                    <li
                         key={`${client.id}-${idx}`}
                         className="flex items-center justify-center"
                     >
-                        {/* Diseño del "Logo" o Nombre del Cliente - TAMAÑO REDUCIDO AQUÍ */}
                         <span className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-slate-400 to-slate-700 uppercase tracking-tighter hover:from-white hover:to-slate-400 transition-colors duration-300 cursor-default">
                             {client.name}
                         </span>
-                        {/* Separador decorativo */}
-                        <span className="ml-16 text-slate-800 text-3xl">•</span>
-                    </div>
+                        <span className="ml-16 text-slate-800 text-3xl" aria-hidden="true">•</span>
+                    </li>
                 ))}
-            </motion.div>
+            </motion.ul>
         </div>
     );
 };
 
-export default ClientMarquee;
+export default PartnersDisplay;
