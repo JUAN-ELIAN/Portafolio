@@ -4,10 +4,12 @@ import { pageTransition } from '../animations/pageTransitions';
 import HeroSection from '../components/home/HeroSection';
 import PurposeSection from '../components/home/PurposeSection';
 import ServicesSection from '../components/home/ServicesSection';
-import DevProjectsSection from '../components/home/DevProjectsSection';
+import SoftwareProjectsSection from '../components/home/SoftwareProjectsSection';
 import CivilProjectsSection from '../components/home/CivilProjectsSection';
 import ClientsSection from '../components/home/ClientsSection';
 import SkillsSection from '../components/home/SkillsSection';
+import FloatingContactButton from '../components/shared/FloatingContactButton';
+import SpiralBackground from '../components/shared/SpiralBackground';
 
 const HomePage = () => {
   return (
@@ -17,13 +19,15 @@ const HomePage = () => {
       exit="exit"
       variants={pageTransition}
     >
+      <SpiralBackground />
       <HeroSection />
       <PurposeSection />
-      <ServicesSection />
-      <DevProjectsSection />
+      <ServicesSection staticMode={true} />
+      <SoftwareProjectsSection />
       <CivilProjectsSection />
       <ClientsSection />
       <SkillsSection />
+      <FloatingContactButton />
     </motion.div>
   );
 };

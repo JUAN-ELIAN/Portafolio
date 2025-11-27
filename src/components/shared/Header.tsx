@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { FcEngineering } from "react-icons/fc";
 import useResponsive from '../../hooks/useResponsive';
@@ -8,14 +8,27 @@ import { AnimatePresence, motion } from 'framer-motion';
 const Header = () => {
   const isMobile = useResponsive();
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      // Si ya estamos en home, hacer scroll al inicio
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Si estamos en otra página, navegar a home
+      navigate('/');
+    }
+  };
+
   return (
     <>
-      <header className="bg-gray-800 text-white p-6 sticky top-0 z-30">
+      <header className="bg-black text-white p-6 sticky top-0 z-30">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <FcEngineering className="h-8 w-8 mr-2" />
@@ -31,7 +44,7 @@ const Header = () => {
             ) : (
               <>
                 <nav className="flex space-x-2">
-                  <Link to="/" className="py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Inicio</Link>
+                  <button onClick={handleHomeClick} className="py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Inicio</button>
                   <Link to="/portfolio" className="py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Portafolio</Link>
                   <Link to="/contact" className="py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Contacto</Link>
                 </nav>
@@ -70,7 +83,7 @@ const Header = () => {
                 {/* Lógica de enlaces condicional */}
                 {isMobile ? (
                   <>
-                    <Link to="/" onClick={toggleMenu} className="hover:text-blue-400 text-white text-lg">Inicio</Link>
+                    <button onClick={(e) => { toggleMenu(); handleHomeClick(e); }} className="hover:text-blue-400 text-white text-lg text-left">Inicio</button>
                     <Link to="/portfolio" onClick={toggleMenu} className="hover:text-blue-400 text-white text-lg">Portafolio</Link>
                     <Link to="/contact" onClick={toggleMenu} className="hover:text-blue-400 text-white text-lg">Contacto</Link>
                     <hr className="my-3 border-gray-700" />

@@ -10,9 +10,9 @@ const ServicesPage = () => {
       animate="animate"
       exit="exit"
       variants={pageTransition}
-      className="pt-24"
+      className="bg-slate-900 min-h-screen"
     >
-      <ServicesSection />
+      <ServicesSection staticMode={true} disableExitAnimation={true} />
     </motion.div>
   );
 };

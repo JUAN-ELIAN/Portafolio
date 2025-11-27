@@ -6,12 +6,14 @@ import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage'; // Añadido
 import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
+import ScrollToTop from './components/shared/ScrollToTop';
 
 const App = () => {
   const location = useLocation();
 
   return (
     <>
+      <ScrollToTop />
       <Header />
       <main>
         <AnimatePresence mode="wait">
